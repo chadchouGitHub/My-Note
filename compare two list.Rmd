@@ -33,14 +33,17 @@ The csv files make from NEB cutter by fellowing steps.
 4. Past Text into Excel with 4 col selected.
 5 Save as csv file. (Note: the first col will be blank. The first row will shift one col. correct by hand.)
 ```{r}
-y<- read.csv("YFCmycRList.csv")
-b<- read.csv("BYP200RList.csv")
+y<- read.csv("YFCmycRList.csv", head=F)
+b<- read.csv("BYP200RList.csv", head=F)
 ry <- y[,1]
 rb <- b[,1]
-tfInry <- ry %in% rb
+tfInry <- ry %in% rb # ry element match in rb will T else will F.
 inBothyb <- intersect(ry,rb)
 inryNotInB <- setdiff(ry,rb)
 
+inrbNotIny <- setdiff(rb,ry)
+suby<- y[!tfInry,] ## use logical list to subset y (Here I use "!" to sub set F row from y)
+# This sub set will have same enzyme as setdiff(ry,rb)
 
 ```
 
