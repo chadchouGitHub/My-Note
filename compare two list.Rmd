@@ -1,0 +1,51 @@
+---
+title: "Compare two list"
+author: "Chia-Ching Chou"
+date: "March 30, 2015"
+output:
+  html_document:
+    keep_md: yes
+---
+This is my note for R learning. 
+Question: I want to compare two list of Enzymes use in two different sequence. I want to know what enzyme are share bewteen them. I want to know what is work in just one of them.
+
+```{r, echo=FALSE}
+setwd("~/Dropbox/Scripts/genomicClass/My Note")
+```
+Here are the example R code to compare two list.
+
+```{r}
+
+A = c("Dog", "Cat", "Mouse")
+B = c("Tiger","Lion","Cat")
+A %in% B
+intersect(A,B) # in both A and B
+setdiff(A,B) # A have but not in the B
+
+```
+
+Example from this place:
+http://stackoverflow.com/questions/17598134/compare-two-lists-in-r
+The csv files make from NEB cutter by fellowing steps.
+1. past sequence into NEB cutter.
+2. click custom digest.
+3. Select table of the Enzymes.
+4. Past Text into Excel with 4 col selected.
+5 Save as csv file. (Note: the first col will be blank. The first row will shift one col. correct by hand.)
+```{r}
+y<- read.csv("YFCmycRList.csv")
+b<- read.csv("BYP200RList.csv")
+ry <- y[,1]
+rb <- b[,1]
+tfInry <- ry %in% rb
+inBothyb <- intersect(ry,rb)
+inryNotInB <- setdiff(ry,rb)
+
+
+```
+
+
+
+
+
+
